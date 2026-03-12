@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Sign Recognition</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="AI Sign.css">
+</head>
+<body>
+
+<div class="particle-bg" id="particle-bg"></div>
+
+<div class="container">
+    <header>
+        <h1>AI Sign Recognition</h1>
+        <p>Show a sign in front of the camera → Get the English letter/word instantly</p>
+    </header>
+
+    <section class="camera-box">
+        <video id="cameraVideo" autoplay muted playsinline></video>
+        <canvas id="overlay"></canvas>
+        <p class="detected-output">Detected Letter: <span id="detectedLetter">NONE</span></p>
+        <div class="confidence-bar">
+            <div id="confidenceFill"></div>
+        </div>
+    </section>
+
+    <section class="history-box">
+    <h2>Detection History</h2>
+    <div id="historyBars" class="history-bars">
+        <!-- Bars will be generated dynamically -->
+    </div>
+</section>
+
+    <footer>
+        <p>© 2026 Abdisalam Mohamed | AI Sign Recognition</p>
+    </footer>
+</div>
+
+<!-- TensorFlow.js -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.0.0/dist/tf.min.js"></script>
+
+<!-- Teachable Machine Image Library -->
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+
+<!-- MediaPipe Hands -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+
+<!-- Your AI detection script -->
+<script src="AI Sign.js"></script>
+
+</body>
+</html>
