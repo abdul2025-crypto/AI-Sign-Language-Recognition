@@ -1,2 +1,83 @@
-# AI-Sign-Language-Recognition
-AI project that detects sign language using webcam and machine learning.
+# AI Sign Language Recognition
+
+A browser-based app that recognizes American Sign Language (ASL) letters in real time using your webcam, machine learning, and hand tracking.
+
+Show a sign in front of the camera and the app displays the detected letter with a confidence score and a live history chart for all 26 letters.
+
+## Features
+
+- **Real-time detection** — Classifies hand signs from the webcam feed
+- **Hand tracking** — MediaPipe draws landmarks and a bounding box around the detected hand
+- **Confidence feedback** — Visual bar shows how confident the model is (predictions below 80% are ignored)
+- **Detection history** — Bar chart for letters A–Z highlights the current prediction
+- **No install required** — Runs entirely in the browser; open the HTML file and allow camera access
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| UI | HTML, CSS (glassmorphism layout, Montserrat) |
+| ML model | [Teachable Machine](https://teachablemachine.withgoogle.com/) + TensorFlow.js |
+| Hand tracking | [MediaPipe Hands](https://developers.google.com/mediapipe/solutions/vision/hand_landmarker) |
+| Runtime | Vanilla JavaScript (no build step) |
+
+## Project Structure
+
+```
+AI-Sign-Language-Recognition/
+├── README.md
+└── AI Sign language/
+    ├── AI Sign.html      # Main page
+    ├── AI Sign.css       # Styles
+    ├── AI Sign.js        # Camera, MediaPipe, and model inference
+    └── Model/            # Exported Teachable Machine weights (optional local copy)
+        ├── model.json
+        ├── metadata.json
+        └── weights.bin
+```
+
+## Getting Started
+
+### Prerequisites
+
+- A modern browser (Chrome, Edge, or Firefox recommended)
+- A working webcam
+- Internet connection (model and libraries load from CDN)
+
+### Run locally
+
+1. Clone or download this repository.
+2. Open `AI Sign language/AI Sign.html` in your browser.
+   - **Tip:** For best results with camera permissions, serve the folder with a local server instead of `file://`:
+     ```bash
+     # Python 3
+     cd "AI Sign language"
+     python -m http.server 8000
+     ```
+     Then visit `http://localhost:8000/AI Sign.html`
+3. Allow camera access when prompted.
+4. Position your hand in frame and perform ASL letter signs.
+
+## How It Works
+
+1. **Camera** — MediaPipe’s `Camera` utility captures frames from the webcam.
+2. **Hand detection** — MediaPipe Hands finds hand landmarks and draws them on a canvas overlay. Predictions run only when a hand is visible.
+3. **Classification** — A Teachable Machine image model (TensorFlow.js) predicts the sign class from the video frame.
+4. **UI update** — The highest-confidence class above 80% updates the detected letter, confidence bar, and history chart. Predictions are throttled to every 150 ms for performance.
+
+The model is loaded from Google’s Teachable Machine hosting:
+
+`https://teachablemachine.withgoogle.com/models/PHYjxWseJ/`
+
+To use your own trained model, replace the `URL` constant in `AI Sign.js` with your model’s export link, or point it at the files in `Model/`.
+
+## Training Your Own Model
+
+1. Go to [Teachable Machine](https://teachablemachine.withgoogle.com/train) and create an **Image Project**.
+2. Add one class per ASL letter (or word) and record samples via webcam.
+3. Train, then **Export Model** → **TensorFlow.js** → **Download** or **Upload to cloud**.
+4. Update `URL` in `AI Sign.js` with your model path.
+
+## Author
+
+**Abdisalam Mohamed** — © 2026
