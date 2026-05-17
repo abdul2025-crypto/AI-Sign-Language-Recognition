@@ -36,28 +36,6 @@ AI-Sign-Language-Recognition/
         └── weights.bin
 ```
 
-## Getting Started
-
-### Prerequisites
-
-- A modern browser (Chrome, Edge, or Firefox recommended)
-- A working webcam
-- Internet connection (model and libraries load from CDN)
-
-### Run locally
-
-1. Clone or download this repository.
-2. Open `AI Sign language/AI Sign.html` in your browser.
-   - **Tip:** For best results with camera permissions, serve the folder with a local server instead of `file://`:
-     ```bash
-     # Python 3
-     cd "AI Sign language"
-     python -m http.server 8000
-     ```
-     Then visit `http://localhost:8000/AI Sign.html`
-3. Allow camera access when prompted.
-4. Position your hand in frame and perform ASL letter signs.
-
 ## How It Works
 
 1. **Camera** — MediaPipe’s `Camera` utility captures frames from the webcam.
