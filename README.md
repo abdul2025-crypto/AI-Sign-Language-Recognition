@@ -49,12 +49,6 @@ The model is loaded from Google’s Teachable Machine hosting:
 
 To use your own trained model, replace the `URL` constant in `AI Sign.js` with your model’s export link, or point it at the files in `Model/`.
 
-## Training Your Own Model
-
-1. Go to [Teachable Machine](https://teachablemachine.withgoogle.com/train) and create an **Image Project**.
-2. Add one class per ASL letter (or word) and record samples via webcam.
-3. Train, then **Export Model** → **TensorFlow.js** → **Download** or **Upload to cloud**.
-4. Update `URL` in `AI Sign.js` with your model path.
 
 ## Author
 
